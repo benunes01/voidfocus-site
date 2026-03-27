@@ -3,598 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VoidFocus — Gamified Screen Time Blocker</title>
-  <meta name="description" content="VoidFocus helps you break phone addiction through gamified focus sessions. Block distracting apps, earn collectible power cards, and reclaim your time.">
-  <meta name="keywords" content="focus app, screen time blocker, digital detox, phone addiction, app blocker, focus timer, productivity">
-  <meta property="og:title" content="VoidFocus — Gamified Screen Time Blocker">
-  <meta property="og:description" content="Break the digital phantoms. Earn power cards through focus.">
-  <meta property="og:type" content="website">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>VoidFocus — Focus Timer & Cards</title>
   <style>
     :root {
-      --bg-void: #080810;
-      --bg-primary: #0F0F1F;
-      --bg-surface: #1A1A2E;
-      --bg-elevated: #252540;
-      --primary: #8B5CF6;
-      --primary-light: #A78BFA;
-      --secondary: #06B6D4;
-      --secondary-light: #22D3EE;
-      --accent: #FBBF24;
-      --accent-light: #FDE68A;
-      --text-primary: #E2E8F0;
-      --text-secondary: #94A3B8;
-      --text-muted: #64748B;
-      --danger: #EF4444;
-      --success: #10B981;
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #8b5cf6;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--bg-void);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Ambient particles */
-    .particles {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      animation: float linear infinite;
-      opacity: 0;
-    }
-    @keyframes float {
-      0% { opacity: 0; transform: translateY(100vh); }
-      10% { opacity: var(--max-opacity); }
-      90% { opacity: var(--max-opacity); }
-      100% { opacity: 0; transform: translateY(-10vh); }
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
 
     .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Navigation */
-    nav {
-      padding: 24px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.5rem;
-      letter-spacing: 3px;
-    }
-    .logo span:first-child { color: var(--text-primary); }
-    .logo span:last-child { color: var(--secondary-light); }
-    nav a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: var(--secondary-light); }
-
-    /* Hero */
-    .hero {
       text-align: center;
-      padding: 80px 0 60px;
+      max-width: 480px;
+      padding: 48px 24px;
     }
-    .hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4rem);
+
+    h1 {
+      font-size: 36px;
       font-weight: 700;
-      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
       margin-bottom: 24px;
-      letter-spacing: 1px;
     }
-    .hero h1 .gradient {
-      background: linear-gradient(135deg, var(--primary), var(--secondary-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-    }
-    .hero-badges {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
-    .badge {
-      background: var(--bg-surface);
-      border: 1px solid var(--bg-elevated);
-      border-radius: 100px;
-      padding: 8px 20px;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .badge .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-    }
-    .badge .dot.cyan { background: var(--secondary); }
-    .badge .dot.violet { background: var(--primary); }
-    .badge .dot.gold { background: var(--accent); }
 
-    /* Sections */
-    section {
-      padding: 80px 0;
-    }
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
+    .description {
       color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    section h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 700;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-    section > p, .section-desc {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      max-width: 600px;
-      line-height: 1.7;
-      margin-bottom: 48px;
+      font-size: 16px;
+      margin-bottom: 40px;
     }
 
-    /* Feature grid */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .links {
+      display: flex;
       gap: 24px;
-    }
-    .feature-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--bg-elevated);
-      border-radius: 16px;
-      padding: 32px;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .feature-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
-    }
-    .feature-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-    .feature-icon.violet { background: rgba(139, 92, 246, 0.15); }
-    .feature-icon.cyan { background: rgba(6, 182, 212, 0.15); }
-    .feature-icon.gold { background: rgba(251, 191, 36, 0.15); }
-    .feature-icon.red { background: rgba(239, 68, 68, 0.15); }
-    .feature-icon.green { background: rgba(16, 185, 129, 0.15); }
-    .feature-card h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .feature-card p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Cards showcase */
-    .cards-grid {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding: 20px 0;
-      -webkit-overflow-scrolling: touch;
-    }
-    .card-item {
-      min-width: 160px;
-      height: 224px;
-      background: var(--bg-surface);
-      border-radius: 12px;
-      border: 1.5px solid var(--bg-elevated);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      transition: border-color 0.3s, transform 0.3s;
-      flex-shrink: 0;
-    }
-    .card-item:hover {
-      transform: translateY(-4px);
-    }
-    .card-item.common { border-color: var(--secondary); }
-    .card-item.rare { border-color: var(--primary); }
-    .card-item.epic { border-color: var(--accent); }
-    .card-item.legendary { border-color: var(--danger); }
-    .card-item .card-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-align: center;
-      padding: 0 12px;
-    }
-    .card-item .card-rarity {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .card-item.common .card-rarity { color: var(--secondary); }
-    .card-item.rare .card-rarity { color: var(--primary-light); }
-    .card-item.epic .card-rarity { color: var(--accent); }
-    .card-item.legendary .card-rarity { color: var(--danger); }
-
-    /* Stats */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-      margin-top: 48px;
-    }
-    .stat {
-      text-align: center;
-      padding: 32px;
-      background: var(--bg-surface);
-      border-radius: 16px;
-      border: 1px solid var(--bg-elevated);
-    }
-    .stat .number {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .stat .number.violet { color: var(--primary-light); }
-    .stat .number.cyan { color: var(--secondary-light); }
-    .stat .number.gold { color: var(--accent); }
-    .stat .label {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* How it works */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 32px;
-      counter-reset: step;
-    }
-    .step {
-      position: relative;
-      padding: 32px;
-      background: var(--bg-surface);
-      border-radius: 16px;
-      border: 1px solid var(--bg-elevated);
-      counter-increment: step;
-    }
-    .step::before {
-      content: counter(step);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--bg-elevated);
-      position: absolute;
-      top: 16px;
-      right: 20px;
-    }
-    .step h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-    }
-    .step p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    /* CTA */
-    .cta {
-      text-align: center;
-      padding: 100px 0;
-    }
-    .cta h2 {
-      margin-bottom: 16px;
-    }
-    .cta p {
-      margin: 0 auto 40px;
-    }
-    .cta-buttons {
-      display: flex;
-      gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
     }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 32px;
-      border-radius: 100px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
+
+    .links a {
+      color: var(--accent);
       text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.3s;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
-    }
-    .btn-primary:hover { box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4); }
-    .btn-secondary {
-      background: var(--bg-surface);
-      color: var(--text-secondary);
-      border: 1px solid var(--bg-elevated);
-    }
-    .btn-secondary:hover {
-      border-color: var(--primary);
-      color: var(--text-primary);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s, background 0.2s;
     }
 
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--bg-elevated);
-      padding: 40px 0;
-      text-align: center;
-    }
-    footer p {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-    footer a {
-      color: var(--text-secondary);
-      text-decoration: none;
-    }
-    footer a:hover { color: var(--secondary-light); }
-
-    /* Privacy section */
-    .privacy {
-      background: var(--bg-surface);
-      border-radius: 16px;
-      border: 1px solid var(--bg-elevated);
-      padding: 40px;
-      margin-top: 48px;
-    }
-    .privacy h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      margin-bottom: 16px;
-    }
-    .privacy p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero { padding: 48px 0 40px; }
-      section { padding: 48px 0; }
-      .features { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr 1fr; }
-      .steps { grid-template-columns: 1fr; }
+    .links a:hover {
+      border-color: var(--accent);
+      background: rgba(139, 92, 246, 0.08);
     }
   </style>
 </head>
 <body>
-
-<!-- Particles -->
-<div class="particles" id="particles"></div>
-
-<div class="container">
-
-  <!-- Nav -->
-  <nav>
-    <div class="logo"><span>VOID</span><span>FOCUS</span></div>
-    <div style="display:flex;gap:24px;">
-      <a href="#features">Features</a>
-      <a href="#cards">Cards</a>
-      <a href="#how">How It Works</a>
-      <a href="#privacy">Privacy</a>
+  <div class="container">
+    <h1>VoidFocus</h1>
+    <p class="tagline">Focus Timer & Cards</p>
+    <p class="description">Block distracting apps, earn collectible cards, and build unbreakable focus streaks. Gamified productivity for your digital detox.</p>
+    <div class="links">
+      <a href="./privacy-policy/">Privacy Policy</a>
+      <a href="./support/">Support</a>
     </div>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Reclaim your focus.<br><span class="gradient">Break the digital phantoms.</span></h1>
-    <p>VoidFocus is a gamified screen time blocker that helps you overcome phone addiction. Block distracting apps, complete focus sessions, and earn collectible power cards as you build better habits.</p>
-    <div class="hero-badges">
-      <div class="badge"><div class="dot cyan"></div>Focus Timer</div>
-      <div class="badge"><div class="dot violet"></div>App Blocker</div>
-      <div class="badge"><div class="dot gold"></div>Collectible Cards</div>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features">
-    <div class="section-label">Features</div>
-    <h2>Everything you need to stay focused</h2>
-    <p class="section-desc">Built for people who want to spend less time on their phone and more time on what matters.</p>
-
-    <div class="features">
-      <div class="feature-card">
-        <div class="feature-icon cyan">⏱</div>
-        <h3>Focus Sessions</h3>
-        <p>Start timed focus sessions from 25 minutes to 2 hours. Choose between standard mode or Pomodoro technique with automatic break cycles.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon red">🛡</div>
-        <h3>App Blocking</h3>
-        <p>Select which apps to block during focus sessions. On Android, apps are blocked via Usage Stats. On iOS, we use Apple's official Screen Time API.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon violet">🃏</div>
-        <h3>Power Cards</h3>
-        <p>Earn 23 unique collectible power cards by completing focus milestones. Each card represents a mental ability you've strengthened through discipline.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon gold">🔥</div>
-        <h3>Streaks & XP</h3>
-        <p>Build daily streaks to multiply your XP earnings. Progress through 50 levels from Novice to Phantom Breaker. Every day of focus makes you stronger.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon green">🎯</div>
-        <h3>Daily Challenges</h3>
-        <p>Complete daily, weekly, and monthly challenges for bonus XP and rare card opportunities. New challenges every day to keep you motivated.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon cyan">💧</div>
-        <h3>Break Reminders</h3>
-        <p>Get reminded to hydrate, stretch, check your posture, and rest your eyes every 25 minutes. Focus on your goals without sacrificing your health.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Cards showcase -->
-  <section id="cards">
-    <div class="section-label">Collection</div>
-    <h2>23 power cards to collect</h2>
-    <p class="section-desc">Each card is earned through real focus achievements. The rarer the card, the greater the discipline required.</p>
-
-    <div class="cards-grid">
-      <div class="card-item common"><div style="font-size:2rem">💫</div><div class="card-name">VOID PULSE</div><div class="card-rarity">Common</div></div>
-      <div class="card-item common"><div style="font-size:2rem">🌊</div><div class="card-name">STREAM WALKER</div><div class="card-rarity">Common</div></div>
-      <div class="card-item rare"><div style="font-size:2rem">⏳</div><div class="card-name">CHRONO WARD</div><div class="card-rarity">Rare</div></div>
-      <div class="card-item rare"><div style="font-size:2rem">🦉</div><div class="card-name">NIGHT OWL</div><div class="card-rarity">Rare</div></div>
-      <div class="card-item epic"><div style="font-size:2rem">👁</div><div class="card-name">DUAL SIGHT</div><div class="card-rarity">Epic</div></div>
-      <div class="card-item epic"><div style="font-size:2rem">🔥</div><div class="card-name">SOUL FORGE</div><div class="card-rarity">Epic</div></div>
-      <div class="card-item legendary"><div style="font-size:2rem">⚡</div><div class="card-name">PRISMATIC BURST</div><div class="card-rarity">Legendary</div></div>
-      <div class="card-item legendary"><div style="font-size:2rem">🐦‍🔥</div><div class="card-name">PHOENIX PROTOCOL</div><div class="card-rarity">Legendary</div></div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section id="how">
-    <div class="section-label">How It Works</div>
-    <h2>Simple. Powerful. Rewarding.</h2>
-    <p class="section-desc">Three steps to break the cycle of phone addiction.</p>
-
-    <div class="steps">
-      <div class="step">
-        <h3>Choose your phantoms</h3>
-        <p>Select which distracting apps to block. Instagram, TikTok, Twitter — you decide. VoidFocus uses official platform APIs to enforce the block.</p>
-      </div>
-      <div class="step">
-        <h3>Start a focus session</h3>
-        <p>Set your duration, pick a tag (Work, Study, Read, Exercise, Meditate), and choose Standard or Pomodoro mode. The timer starts and your apps are blocked.</p>
-      </div>
-      <div class="step">
-        <h3>Earn power cards</h3>
-        <p>Complete sessions to earn XP, maintain streaks, and unlock power cards. Each card is a permanent record of your discipline. Collect all 23 to become a Phantom Breaker.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <section>
-    <div class="section-label">The App</div>
-    <h2>Built with care</h2>
-
-    <div class="stats">
-      <div class="stat"><div class="number violet">23</div><div class="label">Collectible Power Cards</div></div>
-      <div class="stat"><div class="number cyan">50</div><div class="label">Levels to Master</div></div>
-      <div class="stat"><div class="number gold">6</div><div class="label">Languages Supported</div></div>
-    </div>
-  </section>
-
-  <!-- Privacy -->
-  <section id="privacy">
-    <div class="section-label">Privacy & Wellbeing</div>
-    <h2>Your data stays on your device</h2>
-
-    <div class="privacy">
-      <h3>100% Offline</h3>
-      <p>VoidFocus stores all your data locally on your device. Your focus sessions, card collection, XP, streaks — everything stays on your phone. We don't collect, transmit, or store any personal data on external servers.</p>
-      <p>No account required. No cloud sync. No analytics tracking. No ads.</p>
-
-      <h3 style="margin-top:24px">Screen Time & App Blocking</h3>
-      <p>On iOS, VoidFocus uses Apple's official Screen Time API (Family Controls framework) to block apps during focus sessions. This is the same secure, privacy-respecting API that Apple uses for its own Screen Time features. The app requests authorization through Apple's standard consent flow, and users have full control over which apps are blocked and for how long.</p>
-      <p>On Android, VoidFocus uses the Usage Stats API and Overlay permission to monitor and block selected apps during focus sessions. These permissions are requested transparently during onboarding.</p>
-      <p>App blocking is entirely voluntary and user-controlled. Users choose which apps to block, set their own session durations, and can end any session at any time.</p>
-
-      <h3 style="margin-top:24px">Purpose</h3>
-      <p>VoidFocus exists to help people develop healthier relationships with their phones. The gamification system (cards, XP, levels) is designed to make building focus habits enjoyable and rewarding — not to create a new addiction. All gamification features are free and will always be free.</p>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <h2>Ready to break the phantoms?</h2>
-    <p class="section-desc" style="margin:0 auto 40px">Available on iOS and Android.</p>
-    <div class="cta-buttons">
-      <a href="#" class="btn btn-primary">Coming Soon — App Store</a>
-      <a href="#" class="btn btn-secondary">Coming Soon — Play Store</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>VoidFocus &copy; 2026 Be Captain Studio. Built with focus.<br>
-    <a href="mailto:contact@becaptainstudio.com">contact@becaptainstudio.com</a></p>
-  </footer>
-
-</div>
-
-<script>
-// Generate ambient particles
-const container = document.getElementById('particles');
-for (let i = 0; i < 30; i++) {
-  const p = document.createElement('div');
-  p.classList.add('particle');
-  const size = 1 + Math.random() * 3;
-  const colors = ['#8B5CF6', '#A78BFA', '#06B6D4', '#22D3EE'];
-  const color = colors[Math.floor(Math.random() * colors.length)];
-  const maxOpacity = 0.1 + Math.random() * 0.2;
-  p.style.cssText = `
-    width: ${size}px; height: ${size}px;
-    left: ${Math.random() * 100}%;
-    background: ${color};
-    --max-opacity: ${maxOpacity};
-    animation-duration: ${8 + Math.random() * 12}s;
-    animation-delay: ${Math.random() * 10}s;
-  `;
-  container.appendChild(p);
-}
-</script>
-
+  </div>
 </body>
 </html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — VoidFocus</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #8b5cf6;
+      --accent-dim: #6d28d9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .brand .subtitle {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .intro {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 40px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--accent-dim);
+    }
+
+    .card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .faq-item {
+      margin-bottom: 24px;
+    }
+
+    .faq-item h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .faq-item p {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 32px 16px 60px; }
+      .brand h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="brand">
+      <div class="subtitle">Support</div>
+      <h1>VoidFocus</h1>
+    </div>
+
+    <p class="intro">Need help with VoidFocus? We're here to assist. Find answers below or reach out directly.</p>
+
+    <div class="card">
+      <h3>Email Support</h3>
+      <p>For bugs, feature requests, or account questions:<br>
+        <a href="mailto:becaptainstudio@gmail.com">becaptainstudio@gmail.com</a></p>
+    </div>
+
+    <div class="card">
+      <h3>Manage Subscriptions</h3>
+      <p>To cancel, change, or restore your VoidFocus Pro subscription, use your device settings:<br>
+        <strong>iPhone:</strong> Settings &rarr; Apple ID &rarr; Subscriptions<br>
+        <strong>Android:</strong> Google Play &rarr; Payments & subscriptions</p>
+    </div>
+
+    <div class="card">
+      <h3>Restore Purchases</h3>
+      <p>Reinstalled the app or got a new device? Open VoidFocus &rarr; Settings &rarr; Restore Purchases to recover your Pro status.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3>How does app blocking work?</h3>
+      <p>On iOS, VoidFocus uses Apple's Screen Time API (Family Controls) to restrict selected apps during your focus session. On Android, it uses a foreground service that detects when a blocked app opens and displays a blocking overlay. You choose which apps to block before each session.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Is my data sent to any servers?</h3>
+      <p>No. All your data (sessions, stats, cards, progress) is stored locally on your device. We do not operate any backend servers. See our <a href="../privacy-policy/">Privacy Policy</a> for full details.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What happens if I uninstall the app?</h3>
+      <p>All your data is permanently deleted. We recommend using the CSV export feature in the analytics screen to back up your session history before uninstalling.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I use VoidFocus offline?</h3>
+      <p>Yes. Focus sessions, app blocking, gamification, and analytics all work completely offline. An internet connection is only needed for purchasing or restoring a Pro subscription.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Why does VoidFocus need "Usage Access" on Android?</h3>
+      <p>This permission lets VoidFocus detect which app is in the foreground so it can block restricted apps during your focus session. Without it, app blocking cannot function. The permission is optional — the rest of the app works without it.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Why does VoidFocus need Screen Time access on iOS?</h3>
+      <p>VoidFocus uses Apple's Family Controls framework to enforce app restrictions during focus sessions. This is the official, privacy-respecting way to block apps on iOS. The data never leaves your device.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I request a refund?</h3>
+      <p>Refunds are handled by Apple or Google, not by us. Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a> (iOS) or Google Play's refund page (Android).</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>The app is not available in my language.</h3>
+      <p>VoidFocus currently supports English, Portuguese, German, Spanish, Korean, and Japanese. If you'd like to see another language, email us and we'll prioritize based on demand.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <h2>Response Time</h2>
+    <p>We typically respond to support emails within 48 hours. For urgent issues (app crashes, billing problems), please include your device model, OS version, and a description of the issue.</p>
+
+    <div class="footer">
+      <p>&copy; 2026 BeCaptain Studio. All rights reserved.</p>
+      <p style="margin-top: 8px;">
+        <a href="../support/">Support</a> &nbsp;&middot;&nbsp;
+        <a href="../privacy-policy/">Privacy Policy</a>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
