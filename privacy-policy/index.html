@@ -197,14 +197,14 @@
       <h1>VoidFocus</h1>
     </div>
 
-    <p class="effective">Effective Date: March 26, 2026 &nbsp;|&nbsp; Last Updated: March 26, 2026</p>
+    <p class="effective">Effective Date: March 26, 2026 &nbsp;|&nbsp; Last Updated: September 17, 2026</p>
 
     <div class="summary">
       <h2>Quick Summary</h2>
       <ul>
         <li>All your data stays on your device — we have no servers</li>
         <li>We do not track you, profile you, or sell your data</li>
-        <li>No advertising SDKs, no analytics sent to third parties</li>
+        <li>No advertising SDKs and no behavioral tracking; only anonymous crash reports and a handful of product events (see section 4.3)</li>
         <li>Screen time data is processed locally and never leaves your phone</li>
         <li>Subscription payments are handled securely by Apple and Google</li>
       </ul>
@@ -219,7 +219,7 @@
     <h2>2. Information We Collect</h2>
 
     <h3>2.1 Data Stored Locally on Your Device</h3>
-    <p>VoidFocus stores all data locally on your device using an encrypted SQLite database. <strong>This data is never transmitted to our servers because we do not operate any servers.</strong></p>
+    <p>VoidFocus stores all data locally on your device in a private SQLite database inside the App's sandbox, protected by your device's file-level encryption. <strong>This data is never transmitted to our servers because we do not operate any servers.</strong></p>
 
     <table>
       <thead>
@@ -251,9 +251,9 @@
           <td>Personalize your experience</td>
         </tr>
         <tr>
-          <td><strong>Onboarding Selections</strong></td>
-          <td>Age range, break preference, habits to quit</td>
-          <td>Tailor onboarding and session recommendations</td>
+          <td><strong>Onboarding Selection</strong></td>
+          <td>Your estimated daily screen time (one of six ranges)</td>
+          <td>Show you a personal estimate of time spent on your phone per year</td>
         </tr>
         <tr>
           <td><strong>Subscription Status</strong></td>
@@ -352,8 +352,9 @@
       <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
     </ul>
 
-    <h3>4.3 No Analytics, Advertising, or Tracking SDKs</h3>
-    <p>VoidFocus does <strong>not</strong> integrate Firebase Analytics, Google Analytics, Facebook SDK, Amplitude, Mixpanel, AdMob, or any other analytics, advertising, or tracking framework. We have zero visibility into how you use the App.</p>
+    <h3>4.3 Crash Reporting and Product Events (Sentry)</h3>
+    <p>To keep VoidFocus stable we use <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">Sentry</a> for crash reporting. When the App crashes or hits an internal error, Sentry receives a technical report containing the error and stack trace, the App version, your device model, operating system version, and locale. We also record a small set of anonymous product events (for example "onboarding completed", "first session completed", "paywall viewed", "purchase completed") so we can tell whether the App is working as intended. These reports are identified only by a random installation identifier.</p>
+    <p>We do <strong>not</strong> send your focus sessions, the apps you block, your screen time, your cards, or any content you type. We do not integrate Firebase Analytics, Google Analytics, the Facebook SDK, Amplitude, Mixpanel, AdMob, or any advertising or tracking framework, and we never sell or share data with advertisers.</p>
 
     <hr class="section-divider">
 
@@ -408,7 +409,7 @@
       <li><strong>Revoke permissions</strong> at any time through your device's Settings app</li>
       <li><strong>Disable notifications</strong> within VoidFocus settings or your device settings</li>
       <li><strong>Export your data</strong> as CSV from the analytics screen</li>
-      <li><strong>Delete all data</strong> by uninstalling the App</li>
+      <li><strong>Reset your progress</strong> from Settings, or <strong>delete all data</strong> by uninstalling the App</li>
       <li><strong>Manage subscriptions</strong> through the App Store or Google Play Store</li>
     </ul>
 
@@ -430,7 +431,8 @@
       <p>&copy; 2026 BeCaptain Studio. All rights reserved.</p>
       <p style="margin-top: 8px;">
         <a href="../support/">Support</a> &nbsp;&middot;&nbsp;
-        <a href="./">Privacy Policy</a>
+        <a href="./">Privacy Policy</a> &nbsp;&middot;&nbsp;
+        <a href="../terms/">Terms of Use</a>
       </p>
     </div>
 
