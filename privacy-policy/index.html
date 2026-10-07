@@ -197,14 +197,14 @@
       <h1>VoidFocus</h1>
     </div>
 
-    <p class="effective">Effective Date: March 26, 2026 &nbsp;|&nbsp; Last Updated: September 17, 2026</p>
+    <p class="effective">Effective Date: March 26, 2026 &nbsp;|&nbsp; Last Updated: October 8, 2026</p>
 
     <div class="summary">
       <h2>Quick Summary</h2>
       <ul>
         <li>All your data stays on your device — we have no servers</li>
         <li>We do not track you, profile you, or sell your data</li>
-        <li>No advertising SDKs and no behavioral tracking; only anonymous crash reports and a handful of product events (see section 4.3)</li>
+        <li>No analytics and no crash-reporting SDK of any kind &mdash; the only thing that leaves your device is the purchase receipt (see section 4)</li>
         <li>Screen time data is processed locally and never leaves your phone</li>
         <li>Subscription payments are handled securely by Apple and Google</li>
       </ul>
@@ -318,6 +318,8 @@
       <li>Health or fitness data</li>
       <li>Clipboard contents</li>
       <li>Keystroke or input logging</li>
+      <li>Crash reports, error reports, or diagnostic telemetry</li>
+      <li>Usage analytics or product-event data of any kind</li>
     </ul>
 
     <hr class="section-divider">
@@ -352,9 +354,10 @@
       <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
     </ul>
 
-    <h3>4.3 Crash Reporting and Product Events (Sentry)</h3>
-    <p>To keep VoidFocus stable we use <a href="https://sentry.io/privacy/" target="_blank" rel="noopener">Sentry</a> for crash reporting. When the App crashes or hits an internal error, Sentry receives a technical report containing the error and stack trace, the App version, your device model, operating system version, and locale. We also record a small set of anonymous product events (for example "onboarding completed", "first session completed", "paywall viewed", "purchase completed") so we can tell whether the App is working as intended. These reports are identified only by a random installation identifier.</p>
-    <p>We do <strong>not</strong> send your focus sessions, the apps you block, your screen time, your cards, or any content you type. We do not integrate Firebase Analytics, Google Analytics, the Facebook SDK, Amplitude, Mixpanel, AdMob, or any advertising or tracking framework, and we never sell or share data with advertisers.</p>
+    <h3>4.3 No Analytics and No Crash-Reporting SDK</h3>
+    <p>VoidFocus ships with <strong>no analytics service and no crash-reporting service</strong>. There is no Sentry, no Firebase Analytics, no Google Analytics, no Facebook SDK, no Amplitude, no Mixpanel, no AdMob, and no advertising or tracking framework of any kind. Earlier builds of the App used Sentry for crash reports and a small set of anonymous product events; that was removed before version 1.0 was released, and nothing replaced it.</p>
+    <p>We therefore do not receive error reports, usage statistics, your focus sessions, the apps you block, your screen time, your cards, or any content you type. If the App crashes, we see only what Apple or Google chooses to show us in their own developer dashboards &mdash; aggregated, anonymous, and only for users who have opted in to sharing diagnostics with developers in their device settings. That reporting belongs to the platform, not to us, and you control it from iOS Settings &rarr; Privacy &amp; Security &rarr; Analytics &amp; Improvements or the equivalent Android setting.</p>
+    <p>We never sell or share data with advertisers.</p>
 
     <hr class="section-divider">
 
